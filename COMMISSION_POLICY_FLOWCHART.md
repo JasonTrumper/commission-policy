@@ -680,7 +680,7 @@ flowchart TB
         
         AT_WILL["Employee Remains At-Will<br/>(Unless State Law Says Otherwise)"]
         
-        POLICY_AMEND{"Policy Changes"]
+        POLICY_AMEND{"Policy Changes"}
         
         WRITTEN_ONLY["Written Agreement Required<br/>(To Amend/Modify/Waive)"]
         
@@ -688,13 +688,13 @@ flowchart TB
         
         NOTICE_REQUIRED["Advance Written Notice<br/>Provided to Employees"]
         
-        GOVERNING_LAW{"Unless Prohibited by Law"]
+        GOVERNING_LAW{"Unless Prohibited by Law"}
         
         NJ_LAW["Laws of New Jersey Govern"]
         
         JURISDICTION["Morris County, NJ Courts<br/>(Personal Jurisdiction & Venue)"]
         
-        DISPUTE_RESOLUTION{"Dispute Resolution"]
+        DISPUTE_RESOLUTION{"Dispute Resolution"}
         
         INDIVIDUAL_ONLY["Individual Basis Only<br/>(No Class Actions)"]
         
@@ -727,7 +727,7 @@ flowchart TB
         
         SF_START["Quote in Salesforce"]
         
-        SF_RULE_1{"RULE 1: All Criteria Met?"]
+        SF_RULE_1{"RULE 1: All Criteria Met?"}
         
         SF_COND_A["Accounting Active OR CT Active = Checked"]
         SF_COND_B["Dep Met = Checked AND Dep Met Date Populated"]
@@ -735,7 +735,7 @@ flowchart TB
         
         SF_ENABLE["Commission Automation ENABLED"]
         
-        SF_DISABLE{"RULE 2: Automation Disabled?"]
+        SF_DISABLE{"RULE 2: Automation Disabled?"}
         
         SF_FULL_PAID["Full Commission Potential<br/>Already Paid"]
         
