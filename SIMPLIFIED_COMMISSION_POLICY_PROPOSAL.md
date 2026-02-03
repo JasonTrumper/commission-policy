@@ -105,7 +105,7 @@ flowchart TB
     
     EARNING["30-Day Earning Period"]
     
-    EARNED{"30 Days Passed?"]
+    EARNED{"30 Days Passed?"}
     
     FINAL["Fully Earned<br/>No Adjustments"]
     
@@ -175,7 +175,7 @@ flowchart TB
     
     EARN_COMM["Earn commissions<br/>(Apply to draw balance)"]
     
-    END{"Employment ends?"]
+    END{"Employment ends?"}
     
     COVERED["Draw covered<br/>by commissions"]
     
@@ -202,13 +202,13 @@ flowchart TB
 flowchart TB
     BOOK["Schedule appointment<br/>for another rep"]
     
-    HELD{"Appointment held?"]
+    HELD{"Appointment held?"}
     
     SHOW["Show status = Show"]
     
-    RATE{"Lead status at booking"]
+    RATE{"Lead status at booking"}
     
-    PHONE{"Phone appointment?"]
+    PHONE{"Phone appointment?"}
     
     RATES["Rates by status:<br/>Hot: $X<br/>Warm: $Y<br/>Cold: $Z"]
     
