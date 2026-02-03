@@ -150,7 +150,7 @@ flowchart TB
         
         OVERPAY_DEDUCT["Overpayment Deducted<br/>on Following Paycheck"]
         
-        POST_WITHDRAWAL{"Payments After Withdrawal?"]
+        POST_WITHDRAWAL{"Payments After Withdrawal?"}
         
         NO_COMMISSION["No Commission on<br/>Subsequent Payments"]
         
@@ -276,7 +276,7 @@ flowchart TB
         
         STATUS_DEDUCT["Overpayment Deducted<br/>(On Following Paycheck)"]
         
-        OFF_HOLD{"Account Status Taken Off Hold"]
+        OFF_HOLD{"Account Status Taken Off Hold"}
         
         OFF_HOLD_TIMING{"Within 180 Days<br/>of Original Request?"}
         
@@ -311,7 +311,7 @@ flowchart TB
         
         DROP_START["Course Package Reduced"]
         
-        DROP_REASON{"Reason for Reduction"]
+        DROP_REASON{"Reason for Reduction"}
         
         DROP_72["Within 72 Hours of<br/>Enrollment Agreement"]
         
@@ -344,7 +344,7 @@ flowchart TB
         
         ADD_START["Course Package Increased"]
         
-        ADD_REASON{"Reason for Increase"]
+        ADD_REASON{"Reason for Increase"}
         
         ADD_72["Within 72 Hours of<br/>Enrollment Agreement"]
         
@@ -535,7 +535,7 @@ flowchart TB
         
         SHOW_NO_SHOW["'Show' = Commission Earned<br/>'No Show' = No Commission"]
         
-        LEAD_STATUS{"Lead Status at Time of Booking"]
+        LEAD_STATUS{"Lead Status at Time of Booking"}
         
         COLD_NEVER["Cold – Never Spoke To: $15.20"]
         COLD_FUTURE["Cold Future: $15.20"]
@@ -556,7 +556,7 @@ flowchart TB
         
         PHONE_OVERRIDE["Phone Rate Overrides<br/>All Other Rates"]
         
-        RESCHEDULE{"Reschedule of 'No Show' Appointment?"]
+        RESCHEDULE{"Reschedule of No Show Appointment?"}
         
         ORIGINAL_BOOKER{"Original Booked Within 76<br/>Weekday Hours?"}
         
@@ -603,7 +603,7 @@ flowchart TB
         
         PAY_START["Commission Paid in Biweekly Paycheck"]
         
-        PAY_TRIGGER{"Payment Trigger Events"]
+        PAY_TRIGGER{"Payment Trigger Events"}
         
         TRIGGER_1["1. Deposit Payments Received & Cleared"]
         TRIGGER_2["2. PIF Installment Payments Received & Cleared"]
