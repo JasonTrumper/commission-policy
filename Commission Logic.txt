@@ -1,0 +1,177 @@
+Base Automation Rules in Salesforce:
+RULE 1
+For any commission to flow to specified rep on the Quote, all of these criteria on the Quote must be met:
+
+The ‘Accounting Active’ or ‘CT Active’ field must be checked.
+The ‘Dep Met’ field must be checked and the ‘Dep Met Date’ must be populated.
+The ‘Payment Status’ field value must not be ‘Withdraw - 72 hours’.
+RULE 2
+Commission automation is automatically disabled in Salesforce when both of these two criteria are met:
+
+Full potential of commission has already flowed through to the rep.
+>30 days after Deposit Met Date.
+
+This means that any subsequent changes to the quote that would normally create a commission adjustment will not create a commission adjustment.
+
+3.  Commissions on Self-Generated Leads
+
+When you create a new lead record (not an existing lead) in the CRM as a result of a referral and/or presentation to a lead or an organization, you have 15 calendar days from the ‘Self Gen Lead Date’ noted in the CRM of protected lead ownership and are eligible for additional commissions if you enroll the lead, as indicated below:
+25% increase in your total commission if enrolled within 15 calendar days of the ‘Self Gen Lead Date’ noted in the CRM (i.e., the lead protection period).  
+12% increase in your total commission if enrolled within 16-180 calendar days of the ‘Self Gen Lead Date’ noted in the CRM.
+
+If another Education Advisor enrolls your self-generated lead 16-180 days after the ‘Self Gen Lead Date’, you are eligible for commission based on your respective commission rates on 12% of the total amount of the sale. If you or another Education Advisor enrolls your self-generated lead 181 or more days after the ‘Self Gen Lead Date’, you are not eligible for any additional commission.
+Sales Rep Generates Lead
+Human:
+Sales rep creates new lead in Salesforce and updates these fields on the lead record:
+
+Self Gen Lead Owner (picklist for Alias)
+Self Gen Lead (source type)
+Self Gen Lead Date (date picker)
+Automation:
+
+When quote is generated, the ‘Self Employee/Owner’ and ‘Self User’ fields are automatically updated based on the ‘Self Gen Lead Owner’ on the lead record.  The commission rate records are also updated on the quote for Self Employee/Owner:  ‘Self Cash Comm %’, ‘Self Financed Comm%’, and ‘Self Genesis Comm %’.
+
+If Self Employee/Owner enrolls the lead, commission percentage is increased to 125% if the enrollment is within 15 days of the ‘Self Gen Lead Date’ or increased to 112% if enrollment is between 16-180 days of the ‘Self Gen Lead Date’.
+
+If another sales rep enrolls the lead between 16-180 days of the ‘Self Gen Lead Date’, the Self Employee/Owner’s commission percentage will be set to 12% and the quote’s Employee/Owner will be set to 100%.
+
+
+5.1  Requests to Withdrawal
+
+If a customer who you enrolled requests to withdraw from the program within 72 hours after the terms and conditions were signed, your total commission due on the sale will be recalculated as described below. 
+If the Customer Success Department is able to save your enrolled customer from withdrawing from the program, and you are an active employee, your total commission due on the sale will not change unless the customer’s course package is modified to prevent the customer from withdrawing. In this case, your total commission due on the sale will be recalculated based on the updated course package. Any overpayment or underpayment of commissions will be added or deducted on a following paycheck. 
+If the Customer Success Department is not able to save your enrolled customer from withdrawing from the program and the customer is issued a refund, your total commission due on the sale will be recalculated based on the amount collected from the customer prior to the withdrawal request minus the refund amount. Any overpayment of commission on this sale is then deducted on a following paycheck. 
+Customer Requests to Withdrawal w/in 72 Hrs
+Did CS Save?
+Human:
+Change ‘Payment Status’ to ‘Withdraw - 72 hours’
+Automation:
+Commission is removed.
+Did Course Package Change?
+Human:
+Create new quote/new contract (sales rep stays the same);  Uncheck ‘Accounting Active’ on old quote.
+Automation:
+Generates new commission on new quote;   Removes commission on old quote.
+No changes to quote
+Yes
+Yes
+No
+No
+End
+
+5.2  Deposit Payment - Check/ACH Payment Bounces or Credit Card Payment Reversed by Customer  
+
+If, within 45 days after the specified ‘Deposit Met Date’ in the CRM, the customer’s deposit payment is reversed due to insufficient funds or a stop-payment on a check/ACH transaction, the original sale is no longer considered a sale. Subsequently, you are no longer eligible for a commission advance on the original sale.  Any previously advanced commission will be deducted on a following paycheck.  
+
+If, within 45 days after the specified ‘Deposit Met Date’ in the CRM, the customer’s deposit payment is reversed due to a chargeback by the customer of a credit card payment, the original sale is no longer considered a sale.  Subsequently, you are no longer eligible for a commission advance on the original sale.  Any previously advanced commission will be deducted on a following paycheck. Note, however, if a customer’s credit card chargeback is reversed, the Deposit Met Date will be updated in the CRM to the date that the credit card chargeback was reversed, and any prior commission deductions that were applied when the customer initiated the chargeback will be reinstated and added to a following paycheck.
+Deposit is reversed due to insufficient funds/stop-payment
+Human:
+Unchecks ‘Deposit Met’ (leaves original Deposit Met Date)
+Automation:
+If <= 45 days of ‘Deposit Met Date’, removes commission.
+
+If >45 days of ‘Deposit Met Date’, removes commission unless full potential of commission was already paid within 30 days of Dep Met Date.
+Deposit is reversed due to credit card chargeback
+Human:
+Unchecks ‘Deposit Met’ (leaves original Deposit Met Date)
+Automation:
+If <= 45 days of ‘Deposit Met Date’, removes commission.
+
+If >45 days of ‘Deposit Met Date’, removes commission unless full potential of commission was already paid within 30 days of Dep Met Date.
+
+Is CC chargeback reversed?
+Human:
+Checks ‘Deposit Met’ field
+Automation:
+Commission is generated
+No changes to quote
+No
+End
+Yes
+
+5.3  Program Modifications - Dropping of Enrolled Courses
+
+If a customer’s course package is reduced due to one or more of the circumstances noted below, your commission will be recalculated to be based on the new total sale amount. 
+Course package is reduced within 72 hours after the enrollment agreement is signed.
+Course package is reduced as a result of transcript review and/or a Degree Planning Report meeting.
+Course package is reduced in conjunction with the customer’s payment method being changed from a Long-Term Payment Plan option to a Short-Term Payment Plan option within 60 days after the enrollment agreement was signed.
+ 
+Any overpayment of commission on the sale is then deducted from a following paycheck.
+Course Package Reduced within 72 hrs contract is signed
+Course Package Reduced due to transcript review and/or DPR
+Course Package Reduced with Payment Method change from Long-Term to Short-Term within 60 days contract is signed
+Human:
+Create new quote/new contract (sales rep stays the same);  Uncheck ‘Accounting Active’ on old quote.
+Automation:
+Generates new commission on new quote;   Removes commission on old quote.
+Human:
+Create new quote/new contract with Mark as rep;  Uncheck ‘Accounting Active’ and check ‘CT Active’ on old quote.
+Automation:
+None
+Human:
+Create new quote/new contract with Mark as rep;  Uncheck ‘Accounting Active’ and check ‘CT Active’ on old quote.
+Automation:
+None
+Within 60 days of contract signed date?
+Yes
+Human:
+Create new quote/new contract with Mark as rep;  Uncheck ‘Accounting Active’ and check ‘CT Active’ on old quote.
+Automation:
+None
+No
+
+5.4  Program Modifications - Addition of Enrolled Courses
+
+If a customer’s course package is increased due to one or more of the circumstances noted below, your commission will be recalculated to be based on the new total sale amount. 
+Course package is increased within 72 hours after the enrollment agreement is signed.
+Course package is increased as a result of transcript review and/or a Degree Planning Report meeting.
+Course package is increased in conjunction with the customer’s payment method being changed from a Long-Term Payment Plan option to a Short-Term Payment Plan option within 60 days after the enrollment agreement is signed.
+
+Any underpayment of commission on the sales is then added to a following paycheck based on the applicable payment schedule.
+Course Package Increased within 72 hrs contract is signed
+Course Package Increased due to transcript review and/or DPR
+Course Package Increased with Payment Method change from Long-Term to Short-Term within 60 days contract is signed
+Human:
+Create new quote/new contract (sales rep stays the same);  Uncheck ‘Accounting Active’ on old quote.
+Automation:
+Generates new commission on new quote;   Removes commission on old quote.
+Human:
+Create new quote/new contract with Mark as rep;  Uncheck ‘Accounting Active’ and check ‘CT Active’ on old quote.
+Automation:
+None
+Human:
+Create new quote/new contract with Mark as rep;  Uncheck ‘Accounting Active’ and check ‘CT Active’ on old quote.
+Automation:
+None
+
+5.5  Program Modifications - Change to Payment Method
+
+If, within 60 days after the enrollment agreement was signed, the payment method of a sale is changed in the CRM from a Long-Term Payment Plan option to a Short-Term Payment Plan option and you are an active employee, your commission due will be recalculated at the commission rate for the new payment method. Any underpayment or overpayment of commission due on this sale is then added or deducted on a following paycheck based upon the applicable payment schedule. 
+ 
+If at any time the payment method of a sale is changed in the CRM from a Short-Term Payment Plan option to a Long-Term Payment Plan option and you are an active employee, your commission due will be recalculated at the commission rate for the new payment method. Any underpayment or overpayment of commission due on this sale is then added or deducted to a following paycheck based on the applicable payment schedule.
+Payment Method is changed from Long-Term to Short-Term
+Within 60 days of contract signed date?
+Human:
+Create new quote/new contract with Mark as rep;  Uncheck ‘Accounting Active’ and check ‘CT Active’ on old quote.
+Automation:
+None
+Human:
+Create new quote/new contract with Mark as rep;  Uncheck ‘Accounting Active’ and check ‘CT Active’ on old quote.
+Automation:
+None
+No
+Yes
+Payment Method is changed from Short-Term to Long-Term
+Human:
+Create new quote/new contract with Mark as rep;  Uncheck ‘Accounting Active’ and check ‘CT Active’ on old quote.
+Automation:
+None
+
+5.6  Program Modifications - Financing Option with Financial Partner
+ 
+If at any time the customer is eligible for and selects to use a financing option through one of the Company’s Financial Partners, a new quote will be created by the Customer Success team; however, your sales commission will not be recalculated and will continue to be based on the original quote and the original payment method.  
+Payment Method is changed To Financial Partner Option
+Human:
+Create new quote/new contract with Mark as rep;  Uncheck ‘Accounting Active’ and check ‘CT Active’ on old quote.
+Automation:
+None
