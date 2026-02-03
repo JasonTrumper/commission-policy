@@ -585,7 +585,7 @@ flowchart TB
         PHONE_APP -->|Yes| PHONE_RATE
         PHONE_RATE --> PHONE_OVERRIDE
         
-        APPT_HELD -->|No (No Show)| RESCHEDULE
+        APPT_HELD -->|No Show| RESCHEDULE
         RESCHEDULE --> ORIGINAL_BOOKER
         ORIGINAL_BOOKER -->|Yes| ORIGINAL_KEEPS
         ORIGINAL_BOOKER -->|No| RESCHEDULE_KEEPS
